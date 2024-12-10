@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceX | Beyond Earth</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1a1a1a, #000000);
+            z-index: -1;
+            animation: pulse 5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                background: radial-gradient(circle at center, #1a1a1a, #000000);
+            }
+            100% {
+                background: radial-gradient(circle at center, #1a1a1a, #333333);
+            }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff6600;
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            animation: zoomIn 2s ease-out;
+            background: linear-gradient(to right, #ff6600, #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .hero button {
+            background: linear-gradient(to right, #ff0000, #ff6600);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            animation: bounce 2s infinite alternate;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #ff6600, #ff0000);
+        }
+
+        /* Background Stars */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stars span {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
+            animation: twinkle 5s infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Explosions */
+        .explosion {
+            position: absolute;
+            bottom: 50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ff6600, transparent);
+            border-radius: 50%;
+            animation: boom 1s infinite ease-out;
+        }
+
+        @keyframes boom {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="https://via.placeholder.com/100x50?text=SpaceX" alt="SpaceX Logo">
+        <nav>
+            <a href="#mission">Mission</a>
+            <a href="#launches">Launches</a>
+            <a href="#exploration">Exploration</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="stars">
+            <!-- Random stars -->
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const starContainer = document.querySelector('.stars');
+                    for (let i = 0; i < 100; i++) {
+                        const star = document.createElement('span');
+                        star.style.left = `${Math.random() * 100}%`;
+                        star.style.top = `${Math.random() * 100}%`;
+                        starContainer.appendChild(star);
+                    }
+                });
+            </script>
+        </div>
+        <h1>Reach for the Stars</h1>
+        <p>Experience the future of space travel with SpaceX.</p>
+        <button onclick="triggerExplosion()">See More</button>
+        <div class="explosion"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SpaceX. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function triggerExplosion() {
+            const explosion = document.querySelector('.explosion');
+            explosion.style.animation = 'boom 1s infinite ease-out';
+            setTimeout(() => {
+                explosion.style.animation = '';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
